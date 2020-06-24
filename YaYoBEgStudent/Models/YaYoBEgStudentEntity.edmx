@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YaYoBEgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'YaYoBEg.dbo.YaYoBEgUserDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="YaYoBEgUserDetail">
+          <Key>
+            <PropertyRef Name="UserDetailId" />
+          </Key>
+          <Property Name="UserDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber_Cell" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber_Home" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="YaYoBEgUserRoles">
+          <Key>
+            <PropertyRef Name="UserRolesId" />
+          </Key>
+          <Property Name="UserRolesId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="YaYoBEgUsers">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="varbinary(max)" />
+          <Property Name="PasswordSalt" Type="varbinary(max)" />
+          <Property Name="UserRolesId" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__YaYoBEgUs__Descr__145C0A3F">
+          <End Role="YaYoBEgUsers" Type="Self.YaYoBEgUsers" Multiplicity="0..1" />
+          <End Role="YaYoBEgUserDetail" Type="Self.YaYoBEgUserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YaYoBEgUsers">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="YaYoBEgUserDetail">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__YaYoBEgUsers__Id__1273C1CD">
+          <End Role="YaYoBEgUserRoles" Type="Self.YaYoBEgUserRoles" Multiplicity="0..1" />
+          <End Role="YaYoBEgUsers" Type="Self.YaYoBEgUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YaYoBEgUserRoles">
+              <PropertyRef Name="UserRolesId" />
+            </Principal>
+            <Dependent Role="YaYoBEgUsers">
+              <PropertyRef Name="UserRolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YaYoBEgModelStoreContainer">
+          <EntitySet Name="YaYoBEgUserRoles" EntityType="Self.YaYoBEgUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YaYoBEgUsers" EntityType="Self.YaYoBEgUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YaYoBEgUserDetail" EntityType="Self.YaYoBEgUserDetail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [YaYoBEgUserDetail].[UserDetailId] AS [UserDetailId], 
+    [YaYoBEgUserDetail].[UserName] AS [UserName], 
+    [YaYoBEgUserDetail].[FirstName] AS [FirstName], 
+    [YaYoBEgUserDetail].[LastName] AS [LastName], 
+    [YaYoBEgUserDetail].[EmailAddress] AS [EmailAddress], 
+    [YaYoBEgUserDetail].[PhoneNumber_Cell] AS [PhoneNumber_Cell], 
+    [YaYoBEgUserDetail].[PhoneNumber_Home] AS [PhoneNumber_Home], 
+    [YaYoBEgUserDetail].[Description] AS [Description]
+    FROM [dbo].[YaYoBEgUserDetail] AS [YaYoBEgUserDetail]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__YaYoBEgUs__Descr__145C0A3F" Association="Self.FK__YaYoBEgUs__Descr__145C0A3F">
+            <End Role="YaYoBEgUsers" EntitySet="YaYoBEgUsers" />
+            <End Role="YaYoBEgUserDetail" EntitySet="YaYoBEgUserDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__YaYoBEgUsers__Id__1273C1CD" Association="Self.FK__YaYoBEgUsers__Id__1273C1CD">
+            <End Role="YaYoBEgUserRoles" EntitySet="YaYoBEgUserRoles" />
+            <End Role="YaYoBEgUsers" EntitySet="YaYoBEgUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YaYoBEgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="YaYoBEgUserRole">
+          <Key>
+            <PropertyRef Name="UserRolesId" />
+          </Key>
+          <Property Name="UserRolesId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="YaYoBEgUsers" Relationship="Self.FK__YaYoBEgUsers__Id__1273C1CD" FromRole="YaYoBEgUserRoles" ToRole="YaYoBEgUsers" />
+        </EntityType>
+        <EntityType Name="YaYoBEgUser">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UserRolesId" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="YaYoBEgUserRole" Relationship="Self.FK__YaYoBEgUsers__Id__1273C1CD" FromRole="YaYoBEgUsers" ToRole="YaYoBEgUserRoles" />
+          <NavigationProperty Name="YaYoBEgUserDetails" Relationship="Self.FK__YaYoBEgUs__Descr__145C0A3F" FromRole="YaYoBEgUsers" ToRole="YaYoBEgUserDetail" />
+        </EntityType>
+        <EntityType Name="YaYoBEgUserDetail">
+          <Key>
+            <PropertyRef Name="UserDetailId" />
+          </Key>
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber_Cell" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber_Home" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="YaYoBEgUser" Relationship="Self.FK__YaYoBEgUs__Descr__145C0A3F" FromRole="YaYoBEgUserDetail" ToRole="YaYoBEgUsers" />
+        </EntityType>
+        <Association Name="FK__YaYoBEgUsers__Id__1273C1CD">
+          <End Role="YaYoBEgUserRoles" Type="Self.YaYoBEgUserRole" Multiplicity="0..1" />
+          <End Role="YaYoBEgUsers" Type="Self.YaYoBEgUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YaYoBEgUserRoles">
+              <PropertyRef Name="UserRolesId" />
+            </Principal>
+            <Dependent Role="YaYoBEgUsers">
+              <PropertyRef Name="UserRolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__YaYoBEgUs__Descr__145C0A3F">
+          <End Role="YaYoBEgUsers" Type="Self.YaYoBEgUser" Multiplicity="0..1" />
+          <End Role="YaYoBEgUserDetail" Type="Self.YaYoBEgUserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YaYoBEgUsers">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="YaYoBEgUserDetail">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YaYoBEgEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="YaYoBEgUserRoles" EntityType="Self.YaYoBEgUserRole" />
+          <EntitySet Name="YaYoBEgUsers" EntityType="Self.YaYoBEgUser" />
+          <EntitySet Name="YaYoBEgUserDetails" EntityType="Self.YaYoBEgUserDetail" />
+          <AssociationSet Name="FK__YaYoBEgUsers__Id__1273C1CD" Association="Self.FK__YaYoBEgUsers__Id__1273C1CD">
+            <End Role="YaYoBEgUserRoles" EntitySet="YaYoBEgUserRoles" />
+            <End Role="YaYoBEgUsers" EntitySet="YaYoBEgUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__YaYoBEgUs__Descr__145C0A3F" Association="Self.FK__YaYoBEgUs__Descr__145C0A3F">
+            <End Role="YaYoBEgUsers" EntitySet="YaYoBEgUsers" />
+            <End Role="YaYoBEgUserDetail" EntitySet="YaYoBEgUserDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YaYoBEgModelStoreContainer" CdmEntityContainer="YaYoBEgEntities">
+          <EntitySetMapping Name="YaYoBEgUserRoles">
+            <EntityTypeMapping TypeName="YaYoBEgModel.YaYoBEgUserRole">
+              <MappingFragment StoreEntitySet="YaYoBEgUserRoles">
+                <ScalarProperty Name="UserRolesId" ColumnName="UserRolesId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YaYoBEgUsers">
+            <EntityTypeMapping TypeName="YaYoBEgModel.YaYoBEgUser">
+              <MappingFragment StoreEntitySet="YaYoBEgUsers">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="UserRolesId" ColumnName="UserRolesId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YaYoBEgUserDetails">
+            <EntityTypeMapping TypeName="YaYoBEgModel.YaYoBEgUserDetail">
+              <MappingFragment StoreEntitySet="YaYoBEgUserDetail">
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhoneNumber_Cell" ColumnName="PhoneNumber_Cell" />
+                <ScalarProperty Name="PhoneNumber_Home" ColumnName="PhoneNumber_Home" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

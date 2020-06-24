@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46919b7f3e3043b0abcfefba05b5f649" Name="Diagram1">
+        <EntityTypeShape EntityType="YaYoBEgModel.YaYoBEgUserRole" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="YaYoBEgModel.YaYoBEgUser" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="YaYoBEgModel.YaYoBEgUserDetail" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="YaYoBEgModel.FK__YaYoBEgUsers__Id__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="YaYoBEgModel.FK__YaYoBEgUs__Descr__145C0A3F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
