@@ -139,10 +139,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>YaYoBEgStudentEntity.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YaYoBEgStudentEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YaYoBEgStudentEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\YaYoBEgStudentEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>YaYoBEgStudentEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YaYoBEgUser.cs">
+      <DependentUpon>YaYoBEgStudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YaYoBEgUserDetail.cs">
+      <DependentUpon>YaYoBEgStudentEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YaYoBEgUserRole.cs">
+      <DependentUpon>YaYoBEgStudentEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -251,6 +265,12 @@
     <Content Include="Models\YaYoBEgStudentEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>YaYoBEgStudentEntity.Context.cs</LastGenOutput>
+      <DependentUpon>YaYoBEgStudentEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\YaYoBEgStudentEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>YaYoBEgStudentEntity.edmx</DependentUpon>
+      <LastGenOutput>YaYoBEgStudentEntity.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -279,9 +299,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>YaYoBEgStudentEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\YaYoBEgStudentEntity.edmx.diagram">
+    <Content Include="Models\YaYoBEgStudentEntity.edmx.diagram">
       <DependentUpon>YaYoBEgStudentEntity.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
